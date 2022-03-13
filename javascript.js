@@ -3,6 +3,7 @@ const button = document.querySelector(`button`)
 // const authorInput = document.querySelector(`#author`)
 // const pagesInput = document.querySelector(`#pages`)
 // const readInput = document.querySelector(`#read`)
+const container = document.querySelector(`.container`)
 
 document.addEventListener(`DOMContentLoaded`, () => {
     button.addEventListener(`click`, addBookToLibrary)
@@ -25,5 +26,24 @@ function addBookToLibrary() {
     myLibrary.push(newBook)
     console.log(newBook)
     console.log(myLibrary)
+    display()
     // document.querySelector(`div`).textContent = myLibrary
+}
+
+// function display() {
+//     container.textContent = ``
+//     myLibrary.forEach((e) => {
+//         // let newDiv = document.createElement(`p`)
+//         container.textContent += `${e.title}, ${e.author}, ${e.pages}, ${e.read} `
+//         // container.appendChild(newDiv)
+//     })
+// }
+
+function display() {
+    let newDiv = document.createElement(`div`)
+    myLibrary.forEach((e) => {
+        // newDiv = document.createElement(`p`)
+        newDiv.textContent = `${e.title}, ${e.author}, ${e.pages}, ${e.read} `
+        container.appendChild(newDiv)
+    })
 }
