@@ -27,7 +27,6 @@ function addBookToLibrary() {
     console.log(newBook)
     console.log(myLibrary)
     display()
-    // document.querySelector(`div`).textContent = myLibrary
 }
 
 // function display() {
@@ -42,7 +41,6 @@ function addBookToLibrary() {
 function display() {
     let newDiv = document.createElement(`div`)
     myLibrary.forEach((e) => {
-        // newDiv = document.createElement(`p`)
         newDiv.textContent = `${e.title}, ${e.author}, ${e.pages}, ${e.read} `
         container.appendChild(newDiv)
     })
