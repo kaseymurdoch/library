@@ -48,6 +48,7 @@ function display() {
         let removeButton = document.createElement(`button`)
         removeButton.setAttribute(`data-index`, index)
         removeButton.textContent = `REMOVE`
+        removeButton.classList.add(`remove`)
 
         let readCheck = ``
         if (e.read === true) {
@@ -68,9 +69,22 @@ function display() {
         bookCard.appendChild(bookPages)
         bookCard.appendChild(bookRead)
         bookCard.appendChild(removeButton)
+        console.log(removeButton)
     })
-    
+    console.log(myLibrary)
 }
+
+function removeBook(event) {
+    if (event.target.className === `remove`) {
+        const index = event.target.getAttribute(`data-index`)
+        myLibrary.splice(index, 1)
+        display()
+    }
+}
+
+document.addEventListener(`click`, (event) => {
+    removeBook(event)
+})
 
 open.addEventListener(`click`, () => {
     formContainer.classList.add(`show`)
