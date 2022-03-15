@@ -1,10 +1,7 @@
 const submit = document.querySelector(`.submit`)
 const open = document.querySelector(`.open`)
+const cancel = document.querySelector(`.cancel`)
 const formContainer = document.querySelector(`.form-container`)
-// const titleInput = document.querySelector(`#title`)
-// const authorInput = document.querySelector(`#author`)
-// const pagesInput = document.querySelector(`#pages`)
-// const readInput = document.querySelector(`#read`)
 const bookContainer = document.querySelector(`.book-container`)
 
 document.addEventListener(`DOMContentLoaded`, () => {
@@ -26,33 +23,53 @@ function Book(title, author, pages, read) {
 function addBookToLibrary() {
     let newBook = new Book(document.querySelector(`#title`).value, document.querySelector(`#author`).value, document.querySelector(`#pages`).value, document.querySelector(`#read`).checked)
     myLibrary.push(newBook)
-    console.log(newBook)
-    console.log(myLibrary)
     display()
 }
 
-// function display() {
-//     bookContainer.textContent = ``
-//     myLibrary.forEach((e) => {
-//         // let newDiv = document.createElement(`p`)
-//         bookContainer.textContent += `${e.title}, ${e.author}, ${e.pages}, ${e.read} `
-//         // bookContainer.appendChild(newDiv)
-//     })
-// }
-
 function display() {
-    let newDiv = document.createElement(`div`)
-    let readCheck = ``
-    myLibrary.forEach((e) => {
+    bookContainer.innerHTML = "";
+
+    myLibrary.forEach((e, index) => {
+        let bookTitle = document.createElement(`div`)
+        bookTitle.setAttribute(`data-index`, index)
+
+        let bookAuthor = document.createElement(`div`)
+        bookAuthor.setAttribute(`data-index`, index)
+
+        let bookPages = document.createElement(`div`)
+        bookPages.setAttribute(`data-index`, index)
+
+        let bookRead = document.createElement(`div`)
+        bookRead.setAttribute(`data-index`, index)
+
+        let bookCard = document.createElement(`div`)
+        bookCard.setAttribute(`data-index`, index)
+
+        let removeButton = document.createElement(`button`)
+        removeButton.setAttribute(`data-index`, index)
+        removeButton.textContent = `REMOVE`
+
+        let readCheck = ``
         if (e.read === true) {
             readCheck = `Yes`
         }
         if (e.read === false) {
             readCheck = `No`
         }
-        newDiv.textContent = `Ttitle: ${e.title}, Author: ${e.author}, Pages: ${e.pages}, Read: ${readCheck} `
-        bookContainer.appendChild(newDiv)
+
+        bookTitle.textContent = `Title: ${e.title}`
+        bookAuthor.textContent = `Author: ${e.author}`
+        bookPages.textContent = `Pages: ${e.pages}`
+        bookRead.textContent = `Read: ${readCheck}`
+
+        bookContainer.appendChild(bookCard)
+        bookCard.appendChild(bookTitle)
+        bookCard.appendChild(bookAuthor)
+        bookCard.appendChild(bookPages)
+        bookCard.appendChild(bookRead)
+        bookCard.appendChild(removeButton)
     })
+    
 }
 
 open.addEventListener(`click`, () => {
@@ -60,5 +77,9 @@ open.addEventListener(`click`, () => {
 })
 
 submit.addEventListener(`click`, () => {
+    formContainer.classList.remove(`show`)
+})
+
+cancel.addEventListener(`click`, () => {
     formContainer.classList.remove(`show`)
 })

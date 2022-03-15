@@ -1,6 +1,17 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --sidebar-background-color: #0F766E
+}
+
+.add-container {
+    display: grid;
+    justify-content: center;
+    padding: 50px;
+    background-color: rgb(177, 177, 177);
+    box-shadow: 0px 2px 5px 5px rgba(0, 0, 0, .2);
+    border-bottom: 1px solid black;
 }
 
 .form-container {
@@ -12,10 +23,10 @@
     align-items: center;
     height: 100vh;
     width: 100vw;
-    background-color: rgba(0, 0, 0, .2);
+    background-color: rgba(0, 0, 0, .5);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.15s ease;
+    transition: opacity 0.3s ease;
 }
 
 .form-container.show {
@@ -25,7 +36,7 @@
 
 form {
     display: grid;
-    grid-template-columns:  300px 1fr;
+    grid-template-columns:  auto 1fr;
     gap: 15px;
     border: 1px solid black;
     width: 700px;
@@ -34,6 +45,7 @@ form {
     background-color: #fff;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, .2);
     font-size: 1.5rem;
+    align-items: center;
 }
 
 label {
@@ -43,10 +55,25 @@ label {
 button {
     padding: 8px 36px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, .2);
-    background-color: rgb(62, 202, 214);
+    background-color: rgb(53, 171, 182);
     border-radius: 10px;
     border: 0;
     cursor: pointer;
+    color: #fff;
+    font-weight: bold;
+}
+
+.cancel {
+    grid-column: 2;
+    width: 20px;
+    height: 20px;
+    justify-self: right;
+    align-self: center;
+    padding: 0px;
+}
+
+button:active {
+    background-color: rgb(80, 240, 255);
 }
 
 .submit {
@@ -56,7 +83,7 @@ button {
 
 .book-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
     gap: 15px;
     padding: 25px;
 }
@@ -65,9 +92,20 @@ button {
     display: grid;
     align-content: center;
     justify-content: center;
-    border: 1px solid black;
+    gap: 20px;
+    border: 3px solid black;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, .2);
     border-radius: 5px;
-    padding: 6px 18px;
-    height: 50px;
+    padding: 15px 20px;
+    /* height: 120px; */
+    background-color: rgb(137, 14, 148);
+    color: #fff;
+}
+
+.book-container>div>div {
+    overflow: ellipsis;
+}
+
+.book-container>div>button {
+    background-color: red;
 }
