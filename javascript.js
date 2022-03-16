@@ -39,8 +39,9 @@ function display() {
         let bookPages = document.createElement(`div`)
         bookPages.setAttribute(`data-index`, index)
 
-        let bookRead = document.createElement(`div`)
+        let bookRead = document.createElement(`button`)
         bookRead.setAttribute(`data-index`, index)
+        bookRead.classList.add(`toggle`)
 
         let bookCard = document.createElement(`div`)
         bookCard.setAttribute(`data-index`, index)
@@ -52,16 +53,20 @@ function display() {
 
         let readCheck = ``
         if (e.read === true) {
-            readCheck = `Yes`
+            readCheck = `Has Been Read`
+            bookRead.classList.add(`trueRead`)
+            bookRead.classList.remove(`falseRead`)
         }
         if (e.read === false) {
-            readCheck = `No`
+            readCheck = `Has Not Been Read`
+            bookRead.classList.add(`falseRead`)
+            bookRead.classList.remove(`trueRead`)
         }
 
         bookTitle.textContent = `Title: ${e.title}`
         bookAuthor.textContent = `Author: ${e.author}`
         bookPages.textContent = `Pages: ${e.pages}`
-        bookRead.textContent = `Read: ${readCheck}`
+        bookRead.textContent = `${readCheck}`
 
         bookContainer.appendChild(bookCard)
         bookCard.appendChild(bookTitle)
@@ -69,9 +74,7 @@ function display() {
         bookCard.appendChild(bookPages)
         bookCard.appendChild(bookRead)
         bookCard.appendChild(removeButton)
-        console.log(removeButton)
     })
-    console.log(myLibrary)
 }
 
 function removeBook(event) {
@@ -82,8 +85,22 @@ function removeBook(event) {
     }
 }
 
+function toggleRead(event) {
+    if (event.target.classList.contains(`toggle`)) {
+        const index = event.target.getAttribute(`data-index`)
+        if (myLibrary[index].read === true) {
+            myLibrary[index].read = false
+        }
+        else {
+            myLibrary[index].read = true
+        }
+        display()
+    }
+}
+
 document.addEventListener(`click`, (event) => {
     removeBook(event)
+    toggleRead(event)
 })
 
 open.addEventListener(`click`, () => {

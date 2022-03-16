@@ -83,7 +83,7 @@ button:active {
 
 .book-container {
     display: grid;
-    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 15px;
     padding: 25px;
 }
@@ -106,6 +106,19 @@ button:active {
     overflow: ellipsis;
 }
 
-.book-container>div>button {
+.remove {
+    background-color: red;
+    margin-top: 20px;
+}
+
+.book-container>div>button:active {
+    background-color: rgb(184, 0, 0);
+}
+
+.trueRead {
+    background-color: green;
+}
+
+.falseRead {
     background-color: red;
 }
