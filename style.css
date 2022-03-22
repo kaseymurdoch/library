@@ -112,7 +112,7 @@ button:active {
     margin-top: 20px;
 }
 
-.book-container>div>button:active {
+.remove:active {
     background-color: rgb(184, 0, 0);
 }
 
@@ -120,6 +120,14 @@ button:active {
     background-color: green;
 }
 
+.trueRead:active {
+    background-color: rgb(0, 93, 0);
+}
+
 .falseRead {
     background-color: red;
+}
+
+.falseRead:active {
+    background-color: rgb(184, 0, 0);
 }
