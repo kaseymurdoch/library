@@ -114,17 +114,14 @@ submit.addEventListener(`click`, (e) => {
         addBookToLibrary()
     }
     if (!titleInput.validity.valid) {
-        console.log(titleInput.validity.valid)
         titleInput.setCustomValidity(`Enter a valid title`)
         titleInput.reportValidity()
     }
     if (!authorInput.validity.valid) {
-        console.log(authorInput.validity.valid)
         authorInput.setCustomValidity(`Enter a valid author`)
         authorInput.reportValidity()
     }
     if (!pagesInput.validity.valid) {
-        console.log(pagesInput.validity.valid)
         pagesInput.setCustomValidity(`Enter a valid number`)
         pagesInput.reportValidity()
     }
