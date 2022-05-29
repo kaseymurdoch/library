@@ -3,10 +3,14 @@ const open = document.querySelector(`.open`)
 const cancel = document.querySelector(`.cancel`)
 const formContainer = document.querySelector(`.form-container`)
 const bookContainer = document.querySelector(`.book-container`)
+const titleInput = document.querySelector(`#title`)
+const authorInput = document.querySelector(`#author`)
+const pagesInput = document.querySelector(`#pages`)
+const readInput = document.querySelector(`#read`)
 
-document.addEventListener(`DOMContentLoaded`, () => {
-    submit.addEventListener(`click`, addBookToLibrary)
-})
+// document.addEventListener(`DOMContentLoaded`, () => {
+//     submit.addEventListener(`click`, addBookToLibrary)
+// })
 
 let myLibrary = []
 
@@ -18,7 +22,7 @@ function Book(title, author, pages, read) {
 }
 
 function addBookToLibrary() {
-    let newBook = new Book(document.querySelector(`#title`).value, document.querySelector(`#author`).value, document.querySelector(`#pages`).value, document.querySelector(`#read`).checked)
+    let newBook = new Book(titleInput.value, authorInput.value, pagesInput.value, readInput.checked)
     myLibrary.push(newBook)
     display()
 }
@@ -104,10 +108,35 @@ open.addEventListener(`click`, () => {
     formContainer.classList.add(`show`)
 })
 
-submit.addEventListener(`click`, () => {
-    formContainer.classList.remove(`show`)
+submit.addEventListener(`click`, (e) => {
+    if (titleInput.validity.valid && authorInput.validity.valid && pagesInput.validity.valid) {
+        formContainer.classList.remove(`show`)
+        addBookToLibrary()
+    }
+    if (!titleInput.validity.valid) {
+        console.log(titleInput.validity.valid)
+        titleInput.setCustomValidity(`Enter a valid title`)
+        titleInput.reportValidity()
+    }
+    if (!authorInput.validity.valid) {
+        console.log(authorInput.validity.valid)
+        authorInput.setCustomValidity(`Enter a valid author`)
+        authorInput.reportValidity()
+    }
+    if (!pagesInput.validity.valid) {
+        console.log(pagesInput.validity.valid)
+        pagesInput.setCustomValidity(`Enter a valid number`)
+        pagesInput.reportValidity()
+    }
 })
 
 cancel.addEventListener(`click`, () => {
     formContainer.classList.remove(`show`)
+})
+
+document.addEventListener(`input`, () => {
+    titleInput.setCustomValidity(``)
+    authorInput.setCustomValidity(``)
+    pagesInput.setCustomValidity(``)
+    readInput.setCustomValidity(``)
 })

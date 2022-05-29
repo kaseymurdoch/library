@@ -123,3 +123,15 @@ button:active {
 .falseRead {
     background-color: red;
 }
+
+#read {
+    justify-self: start;
+}
+
+input:invalid {
+    border-color: red;
+}
+
+span {
+    color: red;
+}
